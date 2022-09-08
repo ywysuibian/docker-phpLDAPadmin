@@ -7,8 +7,8 @@ on:
     branches: [ "stable" ]
 
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME}}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   DOCKER_IMAGE_NAME: ${{ DOCKER_USERNAME}}/phpldapadmin
   DOCKER_IMAGE_TAG: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
   DOCKER_IMAGE_FULLNAME: ${{ DOCKER_IMAGE_NAME }}/${{ DOCKER_IMAGE_TAG }}
