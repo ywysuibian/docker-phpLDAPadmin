@@ -9,14 +9,15 @@ on:
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  DOCKER_IMAGE_NAME: ${{ env.DOCKER_USERNAME }}/phpldapadmin
   DOCKER_IMAGE_TAG: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
-  DOCKER_IMAGE_FULLNAME: ${{ env.DOCKER_IMAGE_NAME }}/${{ env.DOCKER_IMAGE_TAG }}
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
-
+    env: 
+      DOCKER_IMAGE_NAME: ${{ env.DOCKER_USERNAME }}/phpldapadmin
+      DOCKER_IMAGE_FULLNAME: ${{ env.DOCKER_IMAGE_NAME }}/${{ env.DOCKER_IMAGE_TAG }}
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
